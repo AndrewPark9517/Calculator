@@ -1,0 +1,29 @@
+.pad-number, .pad-key {
+    width: 30%;
+    height: 20%;
+    margin: 1%;
+}
+
+.arith-key {
+   width: 45%;
+   height: 20%;
+   margin: 1%;
+}
+
+.enter {
+    width: 92%;
+    height: 20%;
+    margin: 1%;
+}
+
+.alg-key {
+    width: 30%;
+    height: 75%;
+    margin: 1%;
+}
+
+.nav {
+    width: 45%;
+    height: 75%;
+    margin: 1%;
+}

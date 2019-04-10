@@ -1,0 +1,6 @@
+.Nav {
+    display: inline-flex;
+    width: 30%;
+    height: 20%;
+    justify-content: center;
+}

@@ -1,0 +1,7 @@
+.Arithmetic {
+    width: 30%;
+    height: 80%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
