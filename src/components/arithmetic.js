@@ -5,13 +5,13 @@ import '../style/arithmetic.css';
 export default function Arithmetic(props) {
     return (
         <div className="Arithmetic">
-            <Button className={'arith-key'} value={'()'}/>
-            <Button className={'arith-key'} value={'^'}/>
-            <Button className={'arith-key'} value={'/'}/>
-            <Button className={'arith-key'} value={'*'}/>
-            <Button className={'arith-key'} value={'-'}/>
-            <Button className={'arith-key'} value={'+'}/>
-            <Button className={'enter'} value={'Enter'}/>
+            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'Del'}/>
+            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'^'}/>
+            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'/'}/>
+            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'*'}/>
+            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'-'}/>
+            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'+'}/>
+            <Button onClick={(val) => props.onClick(val)} className={'enter'} value={'Enter'}/>
         </div>
     );
 }
