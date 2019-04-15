@@ -5,9 +5,9 @@ import '../style/algebra.css';
 export default function Algebra(props) {
     return (
         <div className={'Algebra'}>
-            <Button onClick={(val) => props.onClick(val)} className="alg-key" value="sin()"/>
-            <Button onClick={(val) => props.onClick(val)} className="alg-key" value="cos()"/>
-            <Button onClick={(val) => props.onClick(val)} className="alg-key" value="tan()"/>
+            <Button editDisplay={(val) => props.editDisplay(val)} className="alg-key" value="sin("/>
+            <Button editDisplay={(val) => props.editDisplay(val)} className="alg-key" value="cos("/>
+            <Button editDisplay={(val) => props.editDisplay(val)} className="alg-key" value="tan("/>
         </div>
     );
 }

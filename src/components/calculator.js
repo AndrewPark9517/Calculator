@@ -21,16 +21,36 @@ export default class Calculator extends React.Component {
         });
     }
 
+    delete() {
+        let str = this.state.display;
+        let pat = /\($/;
+        if(pat.test(str) && str.length !== 0) {
+            str = str.replace(/\w{3}\($/, '');
+            this.setState(() => {
+                return {display: str};
+            });
+        }
+        else {
+            str = str.replace(/.$/, '');
+            this.setState(() => {
+                return {display: str};
+            });
+        }
+    }
+
     render() {
         return (
             <div className = "Calculator">
                 <Display display={this.state.display}/> 
                     {/*currently not  working, not sending to dislpay*/}
                 <div className="pad">
-                    <Algebra onClick={(val) => this.editDisplay(val)}/>
-                    <Paran onClick={(val) => this.editDisplay(val)}/>
-                    <Pad onClick={(val) => this.editDisplay(val)}/>
-                    <Arithmetic onClick={(val) => this.editDisplay(val)}/>
+                    <Algebra editDisplay={(val) => this.editDisplay(val)}/>
+                    <Paran editDisplay={(val) => this.editDisplay(val)}/>
+                    <Pad editDisplay={(val) => this.editDisplay(val)}/>
+                    <Arithmetic
+                        delete={() => this.delete()} 
+                        editDisplay={(val) => this.editDisplay(val)}
+                    />
                 </div>
             </div>
         );

@@ -5,13 +5,16 @@ import '../style/arithmetic.css';
 export default function Arithmetic(props) {
     return (
         <div className="Arithmetic">
-            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'Del'}/>
-            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'^'}/>
-            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'/'}/>
-            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'*'}/>
-            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'-'}/>
-            <Button onClick={(val) => props.onClick(val)} className={'arith-key'} value={'+'}/>
-            <Button onClick={(val) => props.onClick(val)} className={'enter'} value={'Enter'}/>
+            <Button
+                delete={() => props.delete()} 
+                editDisplay={(val) => props.editDisplay(val)} 
+                className={'arith-key'} value={'Del'}/>
+            <Button editDisplay={(val) => props.editDisplay(val)} className={'arith-key'} value={'^'}/>
+            <Button editDisplay={(val) => props.editDisplay(val)} className={'arith-key'} value={'/'}/>
+            <Button editDisplay={(val) => props.editDisplay(val)} className={'arith-key'} value={'*'}/>
+            <Button editDisplay={(val) => props.editDisplay(val)} className={'arith-key'} value={'-'}/>
+            <Button editDisplay={(val) => props.editDisplay(val)} className={'arith-key'} value={'+'}/>
+            <Button editDisplay={(val) => props.editDisplay(val)} className={'enter'} value={'Enter'}/>
         </div>
     );
 }

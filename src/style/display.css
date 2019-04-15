@@ -2,4 +2,6 @@
     width: 400px;
     height: 15%;
     border-bottom: 1px solid black;
+    text-align: right;
+    padding: 20px 10px 10px 0px;
 }
