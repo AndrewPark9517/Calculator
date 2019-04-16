@@ -38,6 +38,10 @@ export default class Calculator extends React.Component {
         }
     }
 
+    calc(str) {
+        let dblchar = /[\.\/\*\^\+\-]/;
+    }
+
     render() {
         return (
             <div className = "Calculator">
