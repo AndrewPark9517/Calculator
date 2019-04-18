@@ -30,6 +30,10 @@ export default class Calculator extends React.Component {
                 return {display: str};
             });
         }
+        else if(str == "ERROR") {
+            str = '';
+            this.setState({display: str});
+        }
         else {
             str = str.replace(/.$/, '');
             this.setState(() => {
@@ -39,7 +43,27 @@ export default class Calculator extends React.Component {
     }
 
     calc(str) {
-        let dblchar = /[\.\/\*\^\+\-]/;
+        let dblpat = /[\.\/\*\^\+\-]{2}/;
+        this.checkParans(this.state.display);
+        if(dblpat.test(str)) {
+            this.setState({display: 'ERROR'});
+        }
+        
+    }
+
+    checkParans(str) { // check if parantheses open and close properly
+        let parans = str.split('').filter(char => char == '(' || char == ')');
+        let checker = [];
+        parans.forEach(par => {
+            if(par == '(') {
+                checker.push('(');
+            }
+            else {
+                if(!checker.pop()) {
+                    this.setState({display: 'ERROR'})
+                }
+            }
+        });
     }
 
     render() {
@@ -54,6 +78,8 @@ export default class Calculator extends React.Component {
                     <Arithmetic
                         delete={() => this.delete()} 
                         editDisplay={(val) => this.editDisplay(val)}
+                        calc={(str)=> this.calc(str)}
+                        display={this.state.display}
                     />
                 </div>
             </div>

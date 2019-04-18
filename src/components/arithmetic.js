@@ -8,13 +8,19 @@ export default function Arithmetic(props) {
             <Button
                 delete={() => props.delete()} 
                 editDisplay={(val) => props.editDisplay(val)} 
-                className={'arith-key'} value={'Del'}/>
+                className={'arith-key'} 
+                value={'Del'}/>
             <Button editDisplay={(val) => props.editDisplay(val)} className={'arith-key'} value={'^'}/>
             <Button editDisplay={(val) => props.editDisplay(val)} className={'arith-key'} value={'/'}/>
             <Button editDisplay={(val) => props.editDisplay(val)} className={'arith-key'} value={'*'}/>
             <Button editDisplay={(val) => props.editDisplay(val)} className={'arith-key'} value={'-'}/>
             <Button editDisplay={(val) => props.editDisplay(val)} className={'arith-key'} value={'+'}/>
-            <Button editDisplay={(val) => props.editDisplay(val)} className={'enter'} value={'Enter'}/>
+            <Button
+                calc={(str) => props.calc(str)}
+                display={props.display}
+                editDisplay={(val) => props.editDisplay(val)} 
+                className={'enter'} 
+                value={'Enter'}/>
         </div>
     );
 }
