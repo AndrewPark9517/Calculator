@@ -23,7 +23,8 @@ export default class Calculator extends React.Component {
 
     delete() {
         let str = this.state.display;
-        let pat = /\($/;
+        console.log("the stored display: ", str);
+        let pat = /\w{3}\($/;
         if(pat.test(str) && str.length !== 0) {
             str = str.replace(/\w{3}\($/, '');
             this.setState(() => {
@@ -43,12 +44,30 @@ export default class Calculator extends React.Component {
     }
 
     calc(str) {
-        let dblpat = /[\.\/\*\^\+\-]{2}/;
-        this.checkParans(this.state.display);
+        let dblpat = /[\.\/\*\^\+\-]{2}/g;
+        let decpat = /\.[0-9a-b\(\)]{1,}\./g;
+        let emptyparan = /\(\)/g;
+        str = this.insertMultiplier(str);
+        this.checkParans(str);
         if(dblpat.test(str)) {
             this.setState({display: 'ERROR'});
+            console.log("double expression error");
+        }
+        else if(decpat.test(str)) {
+            this.setState({display: 'ERROR'});
+            console.log("decimal error");
+        }
+        else if(emptyparan.test(str)) {
+            this.setState({display: 'ERROR'});
+            console.log("empty paranthesis error");
         }
         
+    }
+
+    insertMultiplier(str) {
+        str = str.replace(/([a-z0-9])(\()/g, "$1*$2");
+        str = str.replace(/(\))([a-z0-9])/g, "$1*$2");
+        return str;
     }
 
     checkParans(str) { // check if parantheses open and close properly
