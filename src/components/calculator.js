@@ -47,7 +47,8 @@ export default class Calculator extends React.Component {
         let dblpat = /[\.\/\*\^\+\-]{2}/g;
         let decpat = /\.[0-9a-b\(\)]{1,}\./g;
         let emptyparan = /\(\)/g;
-        str = this.insertMultiplier(str);
+        str = this.insertMultiplier(str); // so parantheses next to one another/number 
+            // will be read as multiplcation during order of operations
         this.checkParans(str);
         if(dblpat.test(str)) {
             this.setState({display: 'ERROR'});
@@ -61,7 +62,51 @@ export default class Calculator extends React.Component {
             this.setState({display: 'ERROR'});
             console.log("empty paranthesis error");
         }
+
+        str = this.sincostan(str); // purpose is to remove any paranthese characters
+                                   // that are not part of order of operations
+
+        function orderOfOp(str) { // go through recursively through order of operations
+            if(/^\d+\.?\d*$/.test("str")) {
+                return str;
+            }
+        }
         
+    }
+
+    sincostan(str) { // replace sin, cos, and tan with number values
+        let tans = str.match(/tan\([0-9]{1,}\.?[0-9]{0,}\)/g);
+        if(tans) {
+            let tansVal = tans.map(tan => tan.replace(/[tan\(\)]/g,""));
+            let tansCalc = tansVal.map(str => 
+                Math.tan(parseFloat(str)).toFixed(3));
+            for(let i = 0; i < tans.length; i++) {
+                str = str.replace(tans[i], tansCalc[i]);
+            }
+        }
+        
+
+        let sins = str.match(/sin\([0-9]{1,}\.?[0-9]{0,}\)/g);
+        if(sins) {
+            let sinsVal = sins.map(sin => sin.replace(/[sin\(\)]/g,""));
+            let sinsCalc = sinsVal.map(str => 
+                Math.sin(parseFloat(str)).toFixed(3));
+            for(let i = 0; i < sins.length; i++) {
+                str = str.replace(sins[i], sinsCalc[i]);
+            }
+        }
+        
+        let coses = str.match(/cos\([0-9]{1,}\.?[0-9]{0,}\)/g);
+        if(coses) {
+            let cosesVal = coses.map(cos => cos.replace(/[cos\(\)]/g,""));
+            let cosesCalc = cosesVal.map(str => 
+                Math.cos(parseFloat(str)).toFixed(3));
+            for(let i = 0; i < coses.length; i++) {
+                str = str.replace(coses[i], cosesCalc[i]);
+            }
+        }
+        
+        return str;
     }
 
     insertMultiplier(str) {
